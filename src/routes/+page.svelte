@@ -18,10 +18,6 @@
 		// console.log(categories);
 	});
 </script>
-<svelte:head>
-    <link href="http://fonts.geekzu.org/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet"> 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</svelte:head>
 {#if loaded}
 	<AppShell>
 		<svelte:fragment slot="header">
@@ -54,6 +50,12 @@
 			<div class="m-auto p-3 text-center font-black text-2xl text-primary-700"><a href="/activities">请选择一个活动</a></div>
 			<div class="m-auto p-3 text-center w-4/5 md:w-2/3">网站内使用的游戏图片和文本原文，仅用于更好地表现游戏资料，其版权属于上海鹰角网络科技有限公司。<br/>
 				The images and text used in the website are only for better representation of the game data, and their copyright belongs to Shanghai Hypergryph Network Technology Co., Ltd. </div>
+			<div class="text-center text-3xl">
+				致谢
+			</div>
+			<div>
+				<a href="https://fontawesome.com/">Font Awesome</a>
+			</div>
 				<!-- <DialogueContent content={res}></DialogueContent> -->
 			{:else}
 				<div class="w-full flex justify-center p-5">

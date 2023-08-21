@@ -83,13 +83,6 @@
 	});
 </script>
 <svelte:window bind:innerWidth />
-<svelte:head>
-	<link
-		href="http://fonts.geekzu.org/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap"
-		rel="stylesheet"
-	/>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</svelte:head>
 {#if loaded}
 <AppShell>
 	<svelte:fragment slot="header">
