@@ -149,7 +149,7 @@
 <div class="block" bind:this={box} on:scroll={console.log(box)}>
 	<div class="text-lg w-3/4 block m-auto">
 		{#each content.lines as line}
-			{#if line.type == 'Dialogue'}
+			{#if line.type == 'dialogue'}
 				<div class="md:flex py-1 margin:auto" id={line.id}>
 					<div class="md:basis-1/6 md:text-right pr-3 text-primary-600 font-bold inline text-left">
 						<button

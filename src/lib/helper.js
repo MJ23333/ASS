@@ -103,14 +103,13 @@ export async function getImage(name) {
     return data.query.pages[key].imageinfo[0].url;
 }
 export async function parseContent(txt){
-    const response = await fetch("https://image-1258734717.cos.ap-beijing.myqcloud.com/ASSD/zh_CN/"+txt+".json");
+    const response = await fetch("https://image-1258734717.cos.ap-beijing.myqcloud.com/ASSD/zh_CN/"+txt+".json",{cache:"no-cache"});
     if(!response.ok){
         
         return {};
     }
-    let activities = await response.json();
-    // console.log(activities);
-    return activities;
+    let res = await response.json();
+    return res;
 }
 export async function getCover(query) {
     var endpoint = "https://prts.wiki/api.php?action=query&titles=&origin=*&titles=";

@@ -90,6 +90,8 @@
 				}
 			}
 			loaded = true;
+			console.log("story");
+		console.log($story);
 			// console.log($activity);
 		}
 		
@@ -98,7 +100,7 @@
 		// 	goto("/activities");
 		// }
 		// activities=res.activities;
-		// types=res.types;
+		// types=rxes.types;
 		// console.log(activities);
 
 		// console.log(json);
@@ -254,7 +256,7 @@
 		<main>
 			<div class="grid grid-cols-3 m-auto md:w-3/4 p-4 font-bold">
 				<div class="text-left">
-					{#if $story.storyMeta.prev}
+					{#if $story.storyMeta.prev!=null}
 						<a href="/story/{$activity.infoUnlockDatas[$story.storyMeta.prev].storyTxt}"
 							><i class="fas fa-running fa-flip-horizontal"></i>{$activity.infoUnlockDatas[$story.storyMeta.prev].storyName +
 								' ' +
@@ -268,7 +270,7 @@
 					>
 				</div>
 				<div class="text-right">
-					{#if $story.storyMeta.next}
+					{#if $story.storyMeta.next!=null}
 						<a href="/story/{$activity.infoUnlockDatas[$story.storyMeta.next].storyTxt}"
 							>{$activity.infoUnlockDatas[$story.storyMeta.next].storyName +
 								' ' +
@@ -308,18 +310,18 @@
 								</div>
 								<div class="basis-5/6 text-primary-50 md:flex inline">{line.text}</div>
 								<div
-									class="card border-4 border-primary-800 flex justify-center"
+									class="card border-4 border-primary-800"
 									data-popup={'popupHover' + line.id.toString()}
 								>
 									{#if line.figure}
 										<img
-											class="w-52 flex aspect-[21/9] object-cover object-top"
+											class="w-52 flex aspect-[21/9] object-cover object-top m-auto"
 											src={line.figure}
 											alt={line.name}
 										/>
 									{/if}
 									<a
-										class="text-center flex justify-center"
+										class="text-center m-auto block"
 										target="_blank"
 										href="https://prts.wiki/index.php?search={line.name}&profile=advanced&fulltext=1&ns0=1&ns3000=1"
 										>在PRTS上搜索<span class="font-bold">{line.name}</span></a
@@ -335,7 +337,7 @@
 							</div>
 						{:else if line.type == 'decision'}
 							<div class="py-3">
-								{#each line.options as opt, i}
+								{#each Object.entries(line.options) as [i,opt]}
 									<div
 										class="text-primary-50 text-center p-2 font-bold"
 										id={'line' + line.id + 'opt' + i}
@@ -377,17 +379,7 @@
 										ap.play();
 									}}
 								>
-									{line.key}
-								</button>
-							</div>
-							{:else}
-							<div class="md:flex pt-1 pb-1 justify-center text-primary-800 music" id={'line' + line.id}  data-musicid="-999">
-								<button
-									on:click={() => {
-										ap.pause();
-									}}
-								>
-									stopmusic
+									<i class="inline-block fas fa-volume-up px-3 m-auto"></i>{line.key.split("/").slice(-1)[0]}
 								</button>
 							</div>
 							{/if}
@@ -398,7 +390,7 @@
 										ap.pause();
 									}}
 								>
-									stopmusic
+								<i class="fas fa-volume-mute px-3"></i>音乐停止
 								</button>
 							</div>
 						{/if}
@@ -411,7 +403,7 @@
 			<!-- <Content page="WD-1_赤角小镇之围/BEG"></Content> -->
 			<div class="grid grid-cols-3 m-auto md:w-3/4 p-4 font-bold">
 				<div class="text-left">
-					{#if $story.storyMeta.prev}
+					{#if $story.storyMeta.prev!=null}
 						<a href="/story/{$activity.infoUnlockDatas[$story.storyMeta.prev].storyTxt}"
 							><i class="fas fa-running fa-flip-horizontal"></i>{$activity.infoUnlockDatas[$story.storyMeta.prev].storyName +
 								' ' +
@@ -425,7 +417,7 @@
 					>
 				</div>
 				<div class="text-right">
-					{#if $story.storyMeta.next}
+					{#if $story.storyMeta.next!=null}
 						<a href="/story/{$activity.infoUnlockDatas[$story.storyMeta.next].storyTxt}"
 							>{$activity.infoUnlockDatas[$story.storyMeta.next].storyName +
 								' ' +
@@ -441,4 +433,8 @@
 		<ProgressRadial ... stroke={100} meter="stroke-primary-500" track="stroke-primary-500/30" />
 	</div>
 {/if}
-
+<style>
+	.mx{
+		max-width: 40%;
+	}
+</style>
