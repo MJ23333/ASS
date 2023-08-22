@@ -2,6 +2,7 @@
 	//@ts-nocheck
 	export let content;
 	import { popup } from '@skeletonlabs/skeleton';
+	import { lazyLoad } from '$lib/lazy.js'
 	import { afterUpdate, onDestroy } from 'svelte';
 	import { imagemap, charmap, linkmap, musicmap } from '$lib/stores';
 	import { ProgressRadial } from '@skeletonlabs/skeleton';
@@ -171,7 +172,7 @@
 						{#if line.figure}
 							<img
 								class="w-52 flex aspect-[21/9] object-cover object-top"
-								src={$charmap[fun_char_format(fun_char_link(line.figure))]}
+								use:lazyLoad={$charmap[fun_char_format(fun_char_link(line.figure))]}
 								alt={line.name}
 							/>
 						{/if}

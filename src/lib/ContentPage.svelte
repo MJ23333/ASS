@@ -35,6 +35,7 @@
 	import { popup } from '@skeletonlabs/skeleton';
 	import { goto } from '$app/navigation';
 	import { offset } from '@floating-ui/dom';
+	import { lazyLoad } from './lazy';
 	// var story = {};
 	var loaded = false;
 	var covers;
@@ -309,7 +310,7 @@
 									{#if line.figure}
 										<img
 											class="w-52 flex aspect-[21/9] object-cover object-top m-auto"
-											src={line.figure}
+											use:lazyLoad={line.figure}
 											alt={line.name}
 										/>
 									{/if}
@@ -351,7 +352,7 @@
 							<div class="md:flex pt-4 pb-2 justify-center" id={'line' + line.id}>
 								<img
 									class="md:w-3/5 aspect-[21/9] object-cover"
-									src={line.image}
+									use:lazyLoad={line.image}
 									alt={line.image}
 								/>
 							</div>
@@ -359,7 +360,7 @@
 							<div class="md:flex pt-4 pb-2 justify-center" id={'line' + line.id}>
 								<img
 									class="md:w-3/5 aspect-[21/9] object-cover"
-									src={line.image}
+									use:lazyLoad={line.image}
 									alt={line.image}
 								/>
 							</div>
