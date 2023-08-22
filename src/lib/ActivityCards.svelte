@@ -88,7 +88,7 @@
 		var its = [];
         console.log(q);
 		for (var act of $activities) {
-			if(q.name.length!=0&&!q.name.some(ite=>ite.includes(act.name))){
+			if(q.name.length!=0&&!q.name.some(ite=>act.name.includes(ite))){
 				continue;
 			}
 			var ok = false;
@@ -167,8 +167,8 @@
 				return false;
 				break;
 			case 'name':
-				if (res[1]) {
-					return names.includes(res[1]);
+				if (res[1]&&names.some(ite=>ite.includes(res[1]))) {
+					return true;
 				}
 				return false;
 				break;
@@ -215,7 +215,7 @@
 		validation={isValidQuery}
 	/>
 	<div class="p-3">
-		<button on:click={()=>{drawerStore.open({position:"left",bgDrawer: 'bg-surface-700 text-white',width: 'w-[280px] md:w-[480px]',});}}>点我查看查询方法</button>
+		<button on:click={()=>{drawerStore.open({position:"left",bgDrawer: 'bg-surface-700 text-white',width: 'w-3/4 md:w-1/3',});}}>点我查看查询方法</button>
 	</div>
 	</div>
 </div>

@@ -198,13 +198,6 @@
 			}
 		}
 </script>
-
-<svelte:head>
-	<link
-		href="http://fonts.geekzu.org/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap"
-		rel="stylesheet"
-	/>
-</svelte:head>
 {#if loaded}
 	<AppShell on:scroll={scrollHandler}>
 		<svelte:fragment slot="header">
@@ -281,10 +274,10 @@
 			</div>
 
 			<div class="flex justify-center py-4 items-end">
-				<span class="text-right text-5xl font-black inline-block px-4"
+				<span class="text-right sm:text-5xl text-4xl font-black inline-block pr-4"
 					>{$story.storyMeta.storyName}</span
 				><span
-					><span class="text-left text-3xl font-bold inline-block">{$story.storyMeta.avgTag}</span
+					><span class="text-left sm:text-3xl text-2xl font-bold inline-block">{$story.storyMeta.avgTag}</span
 					></span
 				>
 			</div>

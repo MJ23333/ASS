@@ -42,7 +42,7 @@
 					<button
 						class="text-xl font-medium inline-block cardname bg-white
                 hover:bg-gradient-to-br from-cyan-500 to-blue-500 bg-clip-text hover:text-transparent box-decoration-clone trans text-right min-w-max"
-						on:click={() => {query.update((q)=>{q.concat(["type:"+act.type])})}}>{act.charname}</button
+						on:click={() => {query.update((q)=>{return q.concat(["type:"+act.type])})}}>{act.charname}</button
 					>
 					<br/>
 					<div>{progress.toFixed(0)+" %"}</div>
@@ -52,7 +52,7 @@
 					<button
 						class="text-xl font-medium inline-block cardname bg-white
 			hover:bg-gradient-to-br from-cyan-500 to-blue-500 bg-clip-text hover:text-transparent box-decoration-clone trans text-right min-w-max"
-						on:click={() => {query.update((q)=>{q.concat(["type:"+act.type])})}}>{act.type}</button
+						on:click={() => {query.update((q)=>{return q.concat(["type:"+act.type])})}}>{act.type}</button
 					>
 					<br/>
 					<div class="py-2">
