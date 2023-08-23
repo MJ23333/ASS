@@ -139,7 +139,7 @@
 		if ($story.lines) {
 			for (var line of $story.lines) {
 				if ((line.type == 'playmusic' ) && line.key) {
-					audios.push({ name: line.key, artist: '塞壬唱片', url: line.key ,theme: '#ebd0c2'});
+					audios.push({ name: line.key.split("/").slice(-1)[0], artist: '塞壬唱片', url: line.key});
 				}
 			}
 			// console.log("sdf");
@@ -148,7 +148,7 @@
 					container: document.getElementById('aplayer'),
 					fixed: true,
 					autoplay: false,
-					theme: '#FADFA3',
+					theme: '#9b9b9b',
 					loop: 'one',
 					order: 'random',
 					preload: 'auto',
@@ -282,7 +282,7 @@
 					></span
 				>
 			</div>
-			<div id="aplayer" />
+			<div id="aplayer" class="text-primary-700"/>
 			<div class="block" bind:this={box}>
 				<div class="text-lg w-3/4 block m-auto">
 					{#each $story.lines as line}
