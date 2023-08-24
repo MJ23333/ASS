@@ -302,7 +302,7 @@
 										<span>{line.name}</span>
 									</button>
 								</div>
-								<div class="basis-5/6 text-primary-50 md:flex inline">{line.text}</div>
+								<div class="basis-5/6 text-primary-50 md:flex inline">{@html line.text.replace('\\n','<br/>')}</div>
 								<div
 									class="card border-4 border-primary-800"
 									data-popup={'popupHover' + line.id.toString()}
@@ -325,9 +325,9 @@
 							<!-- {#if line.end}
          </span> 
             {/if} -->
-						{:else if line.type == 'text'}
+						{:else if (line.type == 'text'||line.type=='sticker')&&line.text}
 							<div class="flex py-2 justify-center" id={'line' + line.id}>
-								<div class="text-primary-50 md:w-5/8">{line.text}</div>
+								<div class="text-primary-50 md:w-5/8">{@html line.text.replace('\\n','<br/>')}</div>
 							</div>
 						{:else if line.type == 'decision'}
 							<div class="py-3">
