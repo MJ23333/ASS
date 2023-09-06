@@ -286,7 +286,7 @@
 			<div class="block" bind:this={box}>
 				<div class="text-lg w-3/4 block m-auto">
 					{#each $story.lines as line}
-						{#if line.type == 'dialogue'}
+						{#if line.type == 'dialogue'||line.type == 'multiline'}
 							<div class="md:flex py-1 margin:auto" id={line.id}>
 								<div
 									class="md:basis-1/6 md:text-right pr-3 text-primary-600 font-bold inline text-left"
@@ -348,7 +348,8 @@
 								</div>
 								<div class="basis-5/6 text-primary-50 inline" />
 							</div>
-						{:else if line.type == 'image' && line.image}
+						
+						{:else if line.type == 'background' && line.image}
 							<div class="md:flex pt-4 pb-2 justify-center" id={'line' + line.id}>
 								<img
 									class="md:w-3/5 aspect-[21/9] object-cover"
@@ -356,7 +357,7 @@
 									alt={line.image}
 								/>
 							</div>
-						{:else if line.type == 'background' && line.image}
+						{:else if line.type == 'image' &&line.image}
 							<div class="md:flex pt-4 pb-2 justify-center" id={'line' + line.id}>
 								<img
 									class="md:w-3/5 aspect-[21/9] object-cover"

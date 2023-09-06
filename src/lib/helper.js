@@ -1,6 +1,6 @@
 // @ts-nocheck
 export async function parseActivities() {
-    const response = await fetch("https://image-1258734717.cos.ap-beijing.myqcloud.com/ASSD/zh_CN/main.json");
+    const response = await fetch("https://image-1258734717.cos.ap-beijing.myqcloud.com/ASSD/zh_CN/main.json",{cache:"no-cache"});
     let activities = await response.json();
     var types=new Set();
     for(var act of activities){
@@ -44,7 +44,7 @@ export function countOccurrences(array) {
 }  
 export async function getContent(page) {
     var endpoint = "https://prts.wiki/api.php?action=query&prop=revisions&rvprop=content&origin=*&format=json&&titles=" + page;
-    const response = await fetch(endpoint);
+    const response = await fetch(endpoint,{cache:"no-cache"});
     let data = await response.json();
     // console.log(data);
     let key = Object.keys(data.query.pages)[0];
@@ -96,7 +96,7 @@ export async function getCharMap() {
 export async function getImage(name) {
     var endpoint = "https://prts.wiki/api.php?action=query&titles=&origin=*&titles=文件:" + name+"&prop=imageinfo&iiprop=url&format=json";
     console.log(endpoint);
-    const response = await fetch(endpoint);
+    const response = await fetch(endpoint,{cache:"no-cache"});
     let data = await response.json();
     // console.log(data);
     let key = Object.keys(data.query.pages)[0];
@@ -119,7 +119,7 @@ export async function getCover(query) {
     endpoint=endpoint.slice(0,-1);
     endpoint+="&prop=imageinfo&iiprop=url&format=json";
     console.log(endpoint);
-    const response = await fetch(endpoint);
+    const response = await fetch(endpoint,{cache:"no-cache"});
     let data = await response.json();
     // console.log(data);
     var covers=[];
