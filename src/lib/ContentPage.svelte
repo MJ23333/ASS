@@ -91,11 +91,10 @@
 				}
 			}
 			loaded = true;
-			console.log("story");
-		console.log($story);
+			console.log('story');
+			console.log($story);
 			// console.log($activity);
 		}
-		
 
 		// if(!$activity.name){
 		// 	goto("/activities");
@@ -116,21 +115,21 @@
 	var pre = [];
 	var audios = [];
 	var inter;
-	var active=null;
-	var preactive=null;
-	function scrollHandler(event){
-		if(audios.length>0&&ap){
-			var page_btn=document.getElementById("page").getBoundingClientRect().bottom/1.5;
-			var ele=document.getElementsByClassName("music");
-			var activ=null;
+	var active = null;
+	var preactive = null;
+	function scrollHandler(event) {
+		if (audios.length > 0 && ap) {
+			var page_btn = document.getElementById('page').getBoundingClientRect().bottom / 1.5;
+			var ele = document.getElementsByClassName('music');
+			var activ = null;
 			// console.log(page_btn);
-			for(var el of ele){
+			for (var el of ele) {
 				// console.log(el.getBoundingClientRect().bottom);
-				if(el.getBoundingClientRect().bottom<page_btn){
-					activ=Number(el.dataset.musicid);
+				if (el.getBoundingClientRect().bottom < page_btn) {
+					activ = Number(el.dataset.musicid);
 				}
 			}
-			active=activ;
+			active = activ;
 			// console.log(active);
 		}
 	}
@@ -138,12 +137,16 @@
 		audios = [];
 		if ($story.lines) {
 			for (var line of $story.lines) {
-				if ((line.type == 'playmusic' ) && line.key) {
-					audios.push({ name: line.key.split("/").slice(-1)[0], artist: '塞壬唱片', url: line.key});
+				if (line.type == 'playmusic' && line.key) {
+					audios.push({
+						name: line.key.split('/').slice(-1)[0],
+						artist: '塞壬唱片',
+						url: line.key
+					});
 				}
 			}
 			// console.log("sdf");
-			if (audios.length != 0 && pre.length != audios.length&&document.getElementById('aplayer')) {
+			if (audios.length != 0 && pre.length != audios.length && document.getElementById('aplayer')) {
 				ap = new APlayer({
 					container: document.getElementById('aplayer'),
 					fixed: true,
@@ -160,45 +163,46 @@
 					audio: audios
 				});
 				pre = audios;
-				var page_btn=document.getElementById("page").getBoundingClientRect().bottom/1.5;
-			var ele=document.getElementsByClassName("music");
-			var activ=null;
-			// console.log(page_btn);
-			for(var el of ele){
-				// console.log(el.getBoundingClientRect().bottom);
-				if(el.getBoundingClientRect().bottom<page_btn){
-					activ=Number(el.dataset.musicid);
+				var page_btn = document.getElementById('page').getBoundingClientRect().bottom / 1.5;
+				var ele = document.getElementsByClassName('music');
+				var activ = null;
+				// console.log(page_btn);
+				for (var el of ele) {
+					// console.log(el.getBoundingClientRect().bottom);
+					if (el.getBoundingClientRect().bottom < page_btn) {
+						activ = Number(el.dataset.musicid);
+					}
 				}
-			}
-			active=activ;
+				active = activ;
 			}
 		}
 	});
 	onDestroy(() => {
-		console.log("des");
+		console.log('des');
 		if (ap) {
 			ap.destroy();
 		}
-		ap=null;
+		ap = null;
 	});
-	$:{
+	$: {
 		console.log(active);
-			if(ap){
-				if(active!=null&&active>=0){
+		if (ap) {
+			if (active != null && active >= 0) {
 				console.log(active);
 				ap.list.switch(active);
-				if($wantmusic){
+				if ($wantmusic) {
 					ap.play();
-				}else{
+				} else {
 					ap.pause();
 				}
-			}else{
+			} else {
 				ap.pause();
 			}
-			preactive=active;
-			}
+			preactive = active;
 		}
+	}
 </script>
+
 {#if loaded}
 	<AppShell on:scroll={scrollHandler}>
 		<svelte:fragment slot="header">
@@ -243,32 +247,38 @@
 					</ul>
 				</div>
 				<svelte:fragment slot="trail">
-					<SlideToggle name="slider-label" bind:checked={$wantmusic}><i class="fas fa-music"></i></SlideToggle>
-					</svelte:fragment>
+					<SlideToggle name="slider-label" bind:checked={$wantmusic}
+						><i class="fas fa-music" /></SlideToggle
+					>
+				</svelte:fragment>
 			</AppBar>
 		</svelte:fragment>
 		<main>
 			<div class="grid grid-cols-3 m-auto md:w-3/4 p-4 font-bold">
 				<div class="text-left">
-					{#if $story.storyMeta.prev!=null}
+					{#if $story.storyMeta.prev != null}
 						<a href="/story/{$activity.infoUnlockDatas[$story.storyMeta.prev].storyTxt}"
-							><i class="fas fa-running fa-flip-horizontal"></i>{$activity.infoUnlockDatas[$story.storyMeta.prev].storyName +
+							><i class="fas fa-running fa-flip-horizontal" />{$activity.infoUnlockDatas[
+								$story.storyMeta.prev
+							].storyName +
 								' ' +
 								$activity.infoUnlockDatas[$story.storyMeta.prev].avgTag}</a
 						>
 					{/if}
 				</div>
 				<div class="text-center">
-					<span class="font-normal"><i class="fas fa-undo"></i></span><a href="/activity/{$activity.id}"
-						>{$activity.name}</a
+					<span class="font-normal"><i class="fas fa-undo" /></span><a
+						href="/activity/{$activity.id}">{$activity.name}</a
 					>
 				</div>
 				<div class="text-right">
-					{#if $story.storyMeta.next!=null}
+					{#if $story.storyMeta.next != null}
 						<a href="/story/{$activity.infoUnlockDatas[$story.storyMeta.next].storyTxt}"
 							>{$activity.infoUnlockDatas[$story.storyMeta.next].storyName +
 								' ' +
-								$activity.infoUnlockDatas[$story.storyMeta.next].avgTag}<i class="fas fa-running"></i></a
+								$activity.infoUnlockDatas[$story.storyMeta.next].avgTag}<i
+								class="fas fa-running"
+							/></a
 						>
 					{/if}
 				</div>
@@ -278,31 +288,36 @@
 				<span class="text-right sm:text-5xl text-4xl font-black inline-block pr-4"
 					>{$story.storyMeta.storyName}</span
 				><span
-					><span class="text-left sm:text-3xl text-2xl font-bold inline-block">{$story.storyMeta.avgTag}</span
+					><span class="text-left sm:text-3xl text-2xl font-bold inline-block"
+						>{$story.storyMeta.avgTag}</span
 					></span
 				>
 			</div>
-			<div id="aplayer" class="text-primary-700"/>
+			<div id="aplayer" class="text-primary-700" />
 			<div class="block" bind:this={box}>
 				<div class="text-lg w-3/4 block m-auto">
 					{#each $story.lines as line}
-						{#if line.type == 'dialogue'||line.type == 'multiline'}
+						{#if (line.type == 'dialogue' || line.type == 'multiline' || line.type == 'subtitle')&&line.text}
 							<div class="md:flex py-1 margin:auto" id={line.id}>
 								<div
 									class="md:basis-1/6 md:text-right pr-3 text-primary-600 font-bold inline text-left"
 								>
-									<button
-										class=""
-										use:popup={{
-											event: 'click',
-											target: 'popupHover' + line.id.toString(),
-											placement: 'top'
-										}}
-									>
-										<span>{line.name}</span>
-									</button>
+									{#if line.name}
+										<button
+											class=""
+											use:popup={{
+												event: 'click',
+												target: 'popupHover' + line.id.toString(),
+												placement: 'top'
+											}}
+										>
+											<span>{line.name}</span>
+										</button>
+									{/if}
 								</div>
-								<div class="basis-5/6 text-primary-50 md:flex inline">{@html line.text.replace('\\n','<br/>')}</div>
+								<div class="basis-5/6 text-primary-50 md:flex inline">
+									{@html line.text.replace('\\n', '<br/>')}
+								</div>
 								<div
 									class="card border-4 border-primary-800"
 									data-popup={'popupHover' + line.id.toString()}
@@ -325,13 +340,15 @@
 							<!-- {#if line.end}
          </span> 
             {/if} -->
-						{:else if (line.type == 'text'||line.type=='sticker')&&line.text}
+						{:else if (line.type == 'text' || line.type == 'sticker') && line.text}
 							<div class="flex py-2 justify-center" id={'line' + line.id}>
-								<div class="text-primary-50 md:w-5/8">{@html line.text.replace('\\n','<br/>')}</div>
+								<div class="text-primary-50 md:w-5/8">
+									{@html line.text.replace('\\n', '<br/>')}
+								</div>
 							</div>
 						{:else if line.type == 'decision'}
 							<div class="py-3">
-								{#each Object.entries(line.options) as [i,opt]}
+								{#each Object.entries(line.options) as [i, opt]}
 									<div
 										class="text-primary-50 text-center p-2 font-bold"
 										id={'line' + line.id + 'opt' + i}
@@ -348,7 +365,6 @@
 								</div>
 								<div class="basis-5/6 text-primary-50 inline" />
 							</div>
-						
 						{:else if line.type == 'background' && line.image}
 							<div class="md:flex pt-4 pb-2 justify-center" id={'line' + line.id}>
 								<img
@@ -357,7 +373,7 @@
 									alt={line.image}
 								/>
 							</div>
-						{:else if line.type == 'image' &&line.image}
+						{:else if line.type == 'image' && line.image}
 							<div class="md:flex pt-4 pb-2 justify-center" id={'line' + line.id}>
 								<img
 									class="md:w-3/5 aspect-[21/9] object-cover"
@@ -365,27 +381,37 @@
 									alt={line.image}
 								/>
 							</div>
-						{:else if (line.type == 'playmusic')}
+						{:else if line.type == 'playmusic'}
 							{#if line.key}
-							<div class="md:flex pt-1 pb-1 justify-center text-primary-800 music" id={'line' + line.id} data-musicid="{line.musicid}">
-								<button
-									on:click={() => {
-										ap.list.switch(line.musicid);
-										ap.play();
-									}}
+								<div
+									class="md:flex pt-1 pb-1 justify-center text-primary-800 music"
+									id={'line' + line.id}
+									data-musicid={line.musicid}
 								>
-									<i class="inline-block fas fa-volume-up px-3 m-auto"></i>{line.key.split("/").slice(-1)[0]}
-								</button>
-							</div>
+									<button
+										on:click={() => {
+											ap.list.switch(line.musicid);
+											ap.play();
+										}}
+									>
+										<i class="inline-block fas fa-volume-up px-3 m-auto" />{line.key
+											.split('/')
+											.slice(-1)[0]}
+									</button>
+								</div>
 							{/if}
-							{:else if (line.type.toLowerCase() == 'stopmusic')}
-							<div class="md:flex pt-1 pb-1 justify-center text-primary-800 music" id={'line' + line.id}  data-musicid="-999">
+						{:else if line.type.toLowerCase() == 'stopmusic'}
+							<div
+								class="md:flex pt-1 pb-1 justify-center text-primary-800 music"
+								id={'line' + line.id}
+								data-musicid="-999"
+							>
 								<button
 									on:click={() => {
 										ap.pause();
 									}}
 								>
-								<i class="fas fa-volume-mute px-3"></i>音乐停止
+									<i class="fas fa-volume-mute px-3" />音乐停止
 								</button>
 							</div>
 						{/if}
@@ -398,25 +424,29 @@
 			<!-- <Content page="WD-1_赤角小镇之围/BEG"></Content> -->
 			<div class="grid grid-cols-3 m-auto md:w-3/4 p-4 font-bold">
 				<div class="text-left">
-					{#if $story.storyMeta.prev!=null}
+					{#if $story.storyMeta.prev != null}
 						<a href="/story/{$activity.infoUnlockDatas[$story.storyMeta.prev].storyTxt}"
-							><i class="fas fa-running fa-flip-horizontal"></i>{$activity.infoUnlockDatas[$story.storyMeta.prev].storyName +
+							><i class="fas fa-running fa-flip-horizontal" />{$activity.infoUnlockDatas[
+								$story.storyMeta.prev
+							].storyName +
 								' ' +
 								$activity.infoUnlockDatas[$story.storyMeta.prev].avgTag}</a
 						>
 					{/if}
 				</div>
 				<div class="text-center">
-					<span class="font-normal"><i class="fas fa-undo"></i></span><a href="/activity/{$activity.id}"
-						>{$activity.name}</a
+					<span class="font-normal"><i class="fas fa-undo" /></span><a
+						href="/activity/{$activity.id}">{$activity.name}</a
 					>
 				</div>
 				<div class="text-right">
-					{#if $story.storyMeta.next!=null}
+					{#if $story.storyMeta.next != null}
 						<a href="/story/{$activity.infoUnlockDatas[$story.storyMeta.next].storyTxt}"
 							>{$activity.infoUnlockDatas[$story.storyMeta.next].storyName +
 								' ' +
-								$activity.infoUnlockDatas[$story.storyMeta.next].avgTag}<i class="fas fa-running"></i></a
+								$activity.infoUnlockDatas[$story.storyMeta.next].avgTag}<i
+								class="fas fa-running"
+							/></a
 						>
 					{/if}
 				</div>
@@ -428,8 +458,9 @@
 		<ProgressRadial ... stroke={100} meter="stroke-primary-500" track="stroke-primary-500/30" />
 	</div>
 {/if}
+
 <style>
-	.mx{
+	.mx {
 		max-width: 40%;
 	}
 </style>
