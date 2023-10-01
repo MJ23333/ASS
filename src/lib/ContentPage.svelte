@@ -357,7 +357,7 @@
 									</div>
 								{/each}
 							</div>
-						{:else if line.type == 'predicate'}
+						{:else if line.type == 'predicate'&&line.references}
 							<!-- <span class="predicate"> -->
 							<div class="md:flex pt-4 pb-2" id={'line' + line.id}>
 								<div class="basis-1/6 text-right pr-3 text-primary-600 font-bold text-sm inline">
