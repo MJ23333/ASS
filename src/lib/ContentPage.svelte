@@ -297,23 +297,21 @@
 			<div class="block" bind:this={box}>
 				<div class="text-lg w-3/4 block m-auto">
 					{#each $story.lines as line}
-						{#if (line.type == 'dialogue' || line.type == 'multiline' || line.type == 'subtitle')&&line.text}
+						{#if (line.type == 'dialogue' || line.type == 'multiline' || line.type == 'subtitle') && line.text}
 							<div class="md:flex py-1 margin:auto" id={line.id}>
 								<div
 									class="md:basis-1/6 md:text-right pr-3 text-primary-600 font-bold inline text-left"
 								>
-									{#if line.name}
-										<button
-											class=""
-											use:popup={{
-												event: 'click',
-												target: 'popupHover' + line.id.toString(),
-												placement: 'top'
-											}}
-										>
-											<span>{line.name}</span>
-										</button>
-									{/if}
+									<button
+										class=""
+										use:popup={{
+											event: 'click',
+											target: 'popupHover' + line.id.toString(),
+											placement: 'top'
+										}}
+									>
+										<span>{line.name}</span>
+									</button>
 								</div>
 								<div class="basis-5/6 text-primary-50 md:flex inline">
 									{@html line.text.replace('\\n', '<br/>')}
@@ -357,7 +355,7 @@
 									</div>
 								{/each}
 							</div>
-						{:else if line.type == 'predicate'&&line.references}
+						{:else if line.type == 'predicate' && line.references}
 							<!-- <span class="predicate"> -->
 							<div class="md:flex pt-4 pb-2" id={'line' + line.id}>
 								<div class="basis-1/6 text-right pr-3 text-primary-600 font-bold text-sm inline">
