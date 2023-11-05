@@ -71,7 +71,7 @@
 			ASS的活动查询格式为——命令(:参数)<br/>
 			命令目前分为以下几种：<br/>
 			<ul class="list-disc py-4">
-				<li><code class="font-black">name:名称</code>：查询指定名称（严格子串）</li>
+				<li><code class="font-black">name:名称（或无前缀直接输入名称）</code>：查询指定名称（严格子串）</li>
 				<li><code class="font-black">type:类型</code>：查询指定类型的活动，类型包含：主线、支线、剧情、干员密录（与PRTS维持一致）。需要注意的是，干员密录默认不会显示，只有在指定<code>type:干员密录</code>后才会显示</li>
 				<li><code class="font-black">char:角色</code>：查询包含指定角色的活动（以剧情中角色名为准）</li>
 				<li><code class="font-black">sort:方式</code>：按照指定方式排列查询的剧情，方式包括：<code>name</code>名称，<code>progress</code>阅读进度，<code>last_read</code>阅读进度，<code>type</code>类型</li>

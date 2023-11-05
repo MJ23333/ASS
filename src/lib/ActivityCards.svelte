@@ -78,7 +78,9 @@
                     break;
                 case 'rev':
                     qs.rev=true;
+					break;
 				default:
+					qs.name.push(res[0]);
 					break;
 			}
 		}
@@ -185,6 +187,9 @@
 				return true;
 				break;
 			default:
+				if (res[0]&&names.some(ite=>ite.includes(res[0]))) {
+					return true;
+				}
 				return false;
 				break;
 		}
