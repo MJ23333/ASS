@@ -1,0 +1,7 @@
+{
+	"/": [],
+	"/activities": [],
+	"/activity/[id]": [],
+	"/delete": [],
+	"/story/[...id]": []
+}
