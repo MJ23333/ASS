@@ -37,6 +37,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/adapter-vercel": "^3.1.0",
 		"leader-line": "^1.0.7",
 		"leader-line-new": "^1.1.9",
 		"svelte-aplayer": "^0.1.2",

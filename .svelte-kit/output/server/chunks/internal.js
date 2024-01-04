@@ -55,6 +55,7 @@ const Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     $$rendered = `
 
 
+
 ${constructors[1] ? `${validate_component(constructors[0] || missing_component, "svelte:component").$$render(
       $$result,
       { data: data_0, this: components[0] },
@@ -110,7 +111,7 @@ const options = {
   service_worker: false,
   templates: {
     app: ({ head, body, assets: assets2, nonce, env }) => '<!DOCTYPE html>\n<html lang="en" class="dark">\n\n<head>\n	<meta charset="utf-8" />\n	<link rel="icon" href="' + assets2 + '/favicon.png" />\n	<meta name="viewport" content="width=device-width" />\n	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">\n	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">\n	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">\n	<link rel="manifest" href="/site.webmanifest">\n	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">\n	<meta name="msapplication-TileColor" content="#da532c">\n	<meta name="theme-color" content="#ffffff">\n	<meta name="referrer" content="no-referrer">\n	<link href="https://fonts.font.im/css?family=Noto+Sans+SC:400,700,900&display=swap" rel="stylesheet" />\n	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css"\n		integrity="sha512-CIYsJUa3pr1eoXlZFroEI0mq0UIMUqNouNinjpCkSWo3Bx5NRlQ0OuC6DtEB/bDqUWnzXc1gs2X/g52l36N5iw=="\n		crossorigin="anonymous" referrerpolicy="no-referrer" />\n	<script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"\n		integrity="sha512-RWosNnDNw8FxHibJqdFRySIswOUgYhFxnmYO3fp+BgCU7gfo4z0oS7mYFBvaa8qu+axY39BmQOrhW3Tp70XbaQ=="\n		crossorigin="anonymous" referrerpolicy="no-referrer"><\/script>\n	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"\n		integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="\n		crossorigin="anonymous" referrerpolicy="no-referrer" />\n	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />\n	<style>\n		html{\n			font-size:13px;\n		}\n		@media (min-width: 640px) { \n			html{\n				font-size: 15px;\n			}\n		}\n	</style>\n	' + head + '\n</head>\n\n<body data-sveltekit-preload-data="hover" data-theme="seafoam">\n	<div style="display: contents">' + body + "</div>\n</body>\n\n</html>\n",
-    error: ({ status, message }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<title>' + message + `</title>
+    error: ({ status, message }) => '<!doctype html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<title>' + message + `</title>
 
 		<style>
 			body {
@@ -119,8 +120,18 @@ const options = {
 				--divider: #ccc;
 				background: var(--bg);
 				color: var(--fg);
-				font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-					Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+				font-family:
+					system-ui,
+					-apple-system,
+					BlinkMacSystemFont,
+					'Segoe UI',
+					Roboto,
+					Oxygen,
+					Ubuntu,
+					Cantarell,
+					'Open Sans',
+					'Helvetica Neue',
+					sans-serif;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -171,7 +182,7 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "whd9p5"
+  version_hash: "tz7zeg"
 };
 function get_hooks() {
   return {};
