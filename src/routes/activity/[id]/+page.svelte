@@ -83,7 +83,13 @@
 	});
 </script>
 <svelte:window bind:innerWidth />
+<svelte:head>
+	{#if loaded}
+	<title>{$activity.name}</title>
+	{/if}
+</svelte:head>
 {#if loaded}
+
 <AppShell>
 	<svelte:fragment slot="header">
 		<AppBar gridColumns="grid-cols-2" slotDefault="place-self-left" slotTrail="place-content-end">
@@ -93,7 +99,7 @@
 					<li class="crumb-separator" aria-hidden>/</li>
 					<li class="crumb"><a class="font-bold text-primary-700" href="/activities">活动选择</a></li>
 					<li class="crumb-separator" aria-hidden>/</li>
-					<li class="font-bold text-primary-700 crumb">{$activity.name}</li>
+					<li class="font-bold crumb">{$activity.name}</li>
 				</ol>
 				<svelte:fragment slot="trail">{#if $history[$activity.id][sorted[0].storyTxt].lastread>0}
 					<div class="flex sm:flex-row flex-col items-center">

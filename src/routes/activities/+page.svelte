@@ -62,6 +62,9 @@
 		// console.log(categories);
 	});
 </script>
+<svelte:head>
+	<title>活动选择</title>
+</svelte:head>
 <Drawer>
 	<div class="p-8">
 		<div class="text-4xl font-black">

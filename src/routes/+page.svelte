@@ -32,12 +32,15 @@
 	// 	// console.log(categories);
 	// })
 </script>
+<svelte:head>
+	<title>ASS——明日方舟剧情站</title>
+</svelte:head>
 {#if loaded}
 	<AppShell>
 		<svelte:fragment slot="header">
 			<AppBar gridColumns="grid-cols-2" slotDefault="place-self-left" slotTrail="place-content-end">
 					<ol class="breadcrumb">
-						<li class="crumb">主页</li>
+						<li class="crumb font-bold">主页</li>
 					</ol>
 					<svelte:fragment slot="trail">
 						进入：<a class="text-primary-700 font-bold" href="/activities">活动选择</a>
@@ -64,7 +67,7 @@
 					<li><a class="font-black text-primary-700 break-words" href="https://prts.wiki/" target="_blank">PRTS.wiki</a>：图片、音频，部分解析逻辑</li>
 					<li><a class="font-black text-primary-700 break-words" href="https://svelte.dev/" target="_blank">SvelteKit</a>：框架</li>
 					<li><a class="font-black text-primary-700 break-words" href="https://www.skeleton.dev/" target="_blank">Skeleton</a>：UI库</li>
-					<li><a class="font-black text-primary-700 break-words" href="https://tailwindcss.com/" target="_blank">tailwindcss</a>：样式表</li>
+					<li><a class="font-black text-primary-700 break-words" href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a>：样式表</li>
 					<li><a class="font-black text-primary-700 break-words" href="https://github.com/micha-lmxt/svelte-motion" target="_blank">Svelete Motion</a>：卡片动画</li>
 					<li><a class="font-black text-primary-700 break-words" href="https://github.com/K-Sato1995/svelte-vertical-timeline" target="_blank">K-Sato1995/svelte-vertical-timeline</a>：时间轴</li>
 					<li><a class="font-black text-primary-700 break-words" href="https://github.com/DIYgod/APlayer/" target="_blank">DIYgod/APlayer</a>：音乐播放器</li>

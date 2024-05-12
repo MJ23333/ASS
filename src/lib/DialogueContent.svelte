@@ -4,7 +4,7 @@
 	import { popup } from '@skeletonlabs/skeleton';
 	import { lazyLoad } from '$lib/lazy.js'
 	import { afterUpdate, onDestroy } from 'svelte';
-	import { imagemap, charmap, linkmap, musicmap } from '$lib/stores';
+	import { imagemap, charmap, linkmap, musicmap,story } from '$lib/stores';
 	import { ProgressRadial } from '@skeletonlabs/skeleton';
 	const source_url = 'https://static.prts.wiki/';
 	let y;
@@ -145,6 +145,9 @@
 	// var { current_type } = getContext('update');
 	// import { SkeletonImage } from "skeleton-elements/svelte";
 </script>
+<svelte:head>
+	<title>{$story.storyMeta.storyName} · ASS</title>
+</svelte:head>
 <!-- <svelte:window bind:scrollY={y} /> -->
 <div id="aplayer" />
 <div class="block" bind:this={box} on:scroll={console.log(box)}>

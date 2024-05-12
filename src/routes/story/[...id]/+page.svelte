@@ -16,9 +16,6 @@
 	// var story = {};
 </script>
 <!-- <svelte:window bind:scrollY={y} /> -->
-<svelte:head>
-	
-</svelte:head>
 {#key $page.params}
 	<ContentPage params={$page.params}></ContentPage>
 {/key}

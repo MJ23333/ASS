@@ -202,6 +202,11 @@
 		}
 	}
 </script>
+<svelte:head>
+	{#if loaded}
+	<title>{$story.storyMeta.storyName} · {$activity.name}</title>
+	{/if}
+</svelte:head>
 
 {#if loaded}
 	<AppShell on:scroll={scrollHandler}>
