@@ -2,11 +2,20 @@
 	//@ts-nocheck
 	import Motion from 'svelte-motion/src/motion/MotionSSR.svelte';
 	import { ProgressRadial } from '@skeletonlabs/skeleton';
-	import {query} from "$lib/stores"
+	import { query} from "$lib/stores"
 	import {goto} from "$app/navigation"
 	export let act,progress;
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
+	function addtype(tn) {
+		dispatch('message', {
+			typename: tn
+		});
+	}
 	// var { current_type } = getContext('update');
 	// import { SkeletonImage } from "skeleton-elements/svelte";
+	
 </script>
 
 <Motion let:motion layoutId={act.id} layout>
@@ -42,7 +51,7 @@
 					<button
 						class="text-xl font-medium inline-block cardname bg-white
                 hover:bg-gradient-to-br from-cyan-500 to-blue-500 bg-clip-text hover:text-transparent box-decoration-clone trans text-right min-w-max"
-						on:click={() => {query.update((q)=>{return q.concat(["type:"+act.type])})}}>{act.charname}</button
+						on:click={() => {addtype("type:"+act.type)}}>{act.charname}</button
 					>
 					<br/>
 					<div>{progress.toFixed(0)+" %"}</div>
@@ -52,7 +61,7 @@
 					<button
 						class="text-xl font-medium inline-block cardname bg-white
 			hover:bg-gradient-to-br from-cyan-500 to-blue-500 bg-clip-text hover:text-transparent box-decoration-clone trans text-right min-w-max"
-						on:click={() => {query.update((q)=>{return q.concat(["type:"+act.type])})}}>{act.type}</button
+						on:click={() => {addtype("type:"+act.type)}}>{act.type}</button
 					>
 					<br/>
 					<div class="py-2">
@@ -63,6 +72,7 @@
 		</div>
 	</div>
 </Motion>
+<!-- query.update((q)=>{return q.concat(["type:"+act.type])}); -->
 
 <style>
 	/* .cardname {

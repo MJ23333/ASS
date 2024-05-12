@@ -7,7 +7,7 @@
 	import ActivityCards from '$lib/ActivityCards.svelte';
 	import { ProgressRadial } from '@skeletonlabs/skeleton';
 	import DialogueContent from '$lib/DialogueContent.svelte';
-	import { Drawer, drawerStore } from '@skeletonlabs/skeleton';
+	import { Drawer,getDrawerStore } from '@skeletonlabs/skeleton';
 	var res = {};
 	var loaded = false;
 	var progress = {};

@@ -3,6 +3,7 @@ import { localStorageStore } from '@skeletonlabs/skeleton';
 export const activities = writable([]);
 export const types=writable([]);
 export const query=writable([]);
+export const inputChip=writable([]);
 export const activity = writable({});
 export const story = writable({});
 export const imagemap=writable({});

@@ -1,3 +1,4 @@
+<svelte:options accessors />
 <script>
 	// @ts-nocheck
 	import { onMount } from 'svelte';
@@ -12,15 +13,20 @@
 	import { AppBar } from '@skeletonlabs/skeleton';
 	import MotionConfig from 'svelte-motion/src/components/MotionConfig/MotionConfig.svelte';
 	import { split } from 'postcss/lib/list';
-	import { Drawer, drawerStore } from '@skeletonlabs/skeleton';
+	import { Drawer, getDrawerStore } from '@skeletonlabs/skeleton';
 	// export let activitiesdata;
 	var items = [];
 	var names=[];
+	let inputChipp;
 	// var queries = {};
 	var queries = { type: [], character: [],name: [], soft: '' ,rev:false};
 	var query_types = ['type'];
 	export let progress={};
+	function addtype(event){
+		inputChipp.addChip(event.detail.typename);
+	}
 	var a = 1;
+	const drawerStore = getDrawerStore();
 	var loaded;
 	var splitOnce = function (str, delim) {
 		var components = str.split(delim);
@@ -149,6 +155,7 @@
 		}
 		items=its;
 	}
+	
 	function isValidQuery(q) {
 		var res = splitOnce(q, ':');
 		if (!res) {
@@ -214,10 +221,13 @@
 <div class="flex justify-center w-full">
 	<div class="md:w-1/2 w-4/5 p-4">
 		<InputChip
+		bind:this={inputChipp}
 		bind:value={$query}
+		
 		name="chips"
 		placeholder="查询参数"
 		validation={isValidQuery}
+		
 	/>
 	<div class="p-3">
 		<button on:click={()=>{drawerStore.open({position:"left",bgDrawer: 'bg-surface-700 text-white',width: 'w-3/4 md:w-1/3',});}}>点我查看查询方法</button>
@@ -233,7 +243,7 @@
 						class="grid gap-14 grid-cols-[repeat(auto-fill,300px)] g-rows justify-center w-3/4"
 					>
 						{#each items as item (item.id)}
-							<ActivityCard act={item} progress={progress[item.id]}/>
+							<ActivityCard act={item} progress={progress[item.id]} on:message={addtype}/>
 						{/each}
 					</div>
 				</Motion>
