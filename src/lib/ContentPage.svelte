@@ -307,6 +307,7 @@
 								<div
 									class="md:basis-1/6 md:text-right pr-3 text-primary-600 font-bold inline text-left"
 								>
+									{#if line.name}
 									<button
 										class=""
 										use:popup={{
@@ -315,8 +316,9 @@
 											placement: 'top'
 										}}
 									>
-										<span>{line.name}</span>
-									</button>
+									<span>{line.name}</span>
+								</button>
+									{/if}
 								</div>
 								<div class="basis-5/6 text-primary-50 md:flex inline">
 									{@html line.text.replace('\\n', '<br/>')}
